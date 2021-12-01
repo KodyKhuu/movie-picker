@@ -1,0 +1,8 @@
+<app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+
+<p><i>Favorite Movies: </i></p>
+<ul>
+  <li *ngFor="let movie of staticMovies">
+    {{ movie.title }}
+  </li>
+</ul>

@@ -1,3 +1,11 @@
 <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
 
-<div [innerHTML]="gesture"></div>
+<p><i>Browse Movies: </i></p>
+<ul>
+  <li *ngFor="let browseType of browseTypes">
+    {{ browseType }}
+  </li>
+</ul>
+
+<div>Currently selected:</div>
+<div [innerHTML]="currentBrowseType"></div>

@@ -1,0 +1,7 @@
+<app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+
+<div>Currently selected:</div>
+<div [innerHTML]="currentMovie.title"></div>
+<img [src]="currentImage" alt="Current Movie" />
+
+<div>Viewing Movie # {{ index + 1 }} out of {{ movies.length }}</div>
