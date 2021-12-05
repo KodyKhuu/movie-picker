@@ -1,8 +1,25 @@
-<app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+<app-header></app-header>
 
+<app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
+<div>Currently selected: {{ currentMovie.title }}</div>
+
+<div *ngIf="isRanking">Ranking in progress...</div>
 <p><i>Favorite Movies: </i></p>
-<ul>
+<ol>
   <li *ngFor="let movie of staticMovies">
     {{ movie.title }}
   </li>
-</ul>
+</ol>
+
+<div class="hand-commands">
+  <ul>
+    <li>Hand Commands:</li>
+    <li><i>Hand Pointing:</i> Select Next Movie</li>
+    <li><i>Hand Pinching:</i> Select Previous Movie</li>
+    <li>
+      <i>Open Hand:</i> Change Rank of Current Movie OR Stop Ranking Current
+      Movie
+    </li>
+    <li><i>One Closed One Pointing:</i> Go to Home</li>
+  </ul>
+</div>

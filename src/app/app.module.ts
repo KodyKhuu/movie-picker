@@ -9,6 +9,8 @@ import { HandtrackerComponent } from "./handtracker/handtracker.component";
 import { HttpClientModule } from "@angular/common/http";
 import { BrowseMoviesComponent } from './browse-movies/browse-movies.component';
 import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ import { FavoriteMoviesComponent } from './favorite-movies/favorite-movies.compo
     HandtrackerComponent,
     BrowseMoviesComponent,
     FavoriteMoviesComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

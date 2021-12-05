@@ -28,7 +28,7 @@ export class HomePageComponent implements OnInit {
     } else if (prediction === "Open Hand") {
       const type = this.currentBrowseType.toLowerCase().replace(" ", "_");
       window.open("/browse/" + type, "_self");
-    } else if (prediction == "Two Closed Hands") {
+    } else if (prediction == "One Open One Closed") {
       window.open("/favorites", "_self");
     }
   }

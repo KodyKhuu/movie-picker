@@ -1,3 +1,5 @@
+<app-header></app-header>
+
 <app-handtracker (onPrediction)="prediction($event)"></app-handtracker>
 
 <p><i>Browse Movies: </i></p>
@@ -9,3 +11,12 @@
 
 <div>Currently selected:</div>
 <div [innerHTML]="currentBrowseType"></div>
+
+<div class="hand-commands">
+  <ul>
+    <li>Hand Commands:</li>
+    <li><i>Hand Pointing:</i> Next Browse Type</li>
+    <li><i>Open Hand:</i> Browse Movies of Current Browse Type</li>
+    <li><i>Open Hand and Closed Hand:</i> Go to Favorite Movies</li>
+  </ul>
+</div>

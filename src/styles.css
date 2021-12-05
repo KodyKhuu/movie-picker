@@ -1,1 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-color: #16202a;
+  color: white;
+  font-size: 18px;
+  font-family: Palatino, Palatino Linotype, Palatino LT STD, Book Antiqua,
+    Georgia, serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  display: table;
+  margin: auto;
+}
+
+body {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+ul li {
+  list-style: none;
+  margin-left: -30px;
+}
+
+li {
+  background-color: #192734;
+  border-radius: 30%;
+  padding: 10px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+nav {
+  font-size: 32px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.hand-commands {
+  font-size: 13px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

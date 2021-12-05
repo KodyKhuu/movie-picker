@@ -123,18 +123,27 @@ export class HandtrackerComponent implements OnInit {
             if (p.label == "pinch") pinching++;
           }
 
+          console.log(pointing, closedhands);
           // These are just a few options! What about one hand open and one hand closed!?
 
-          if (openhands > 1) this.detectedGesture = "Two Open Hands";
-          else if (openhands == 1) this.detectedGesture = "Open Hand";
-
-          if (closedhands > 1) this.detectedGesture = "Two Closed Hands";
-          else if (closedhands == 1) this.detectedGesture = "Closed Hand";
-
-          if (pointing > 1) this.detectedGesture = "Two Hands Pointing";
+          if (openhands > 1) {
+            this.detectedGesture = "Two Open Hands";
+          } else if (openhands == 1) {
+            if (closedhands > 0) {
+              this.detectedGesture = "One Open One Closed";
+            } else {
+              this.detectedGesture = "Open Hand";
+            }
+          } else if (closedhands > 1) this.detectedGesture = "Two Closed Hands";
+          else if (closedhands == 1) {
+            if (pointing > 0) {
+              this.detectedGesture = "One Closed One Pointing";
+            } else {
+              this.detectedGesture = "Closed Hand";
+            }
+          } else if (pointing > 1) this.detectedGesture = "Two Hands Pointing";
           else if (pointing == 1) this.detectedGesture = "Hand Pointing";
-
-          if (pinching > 1) this.detectedGesture = "Two Hands Pinching";
+          else if (pinching > 1) this.detectedGesture = "Two Hands Pinching";
           else if (pinching == 1) this.detectedGesture = "Hand Pinching";
 
           if (
