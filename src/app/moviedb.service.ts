@@ -15,4 +15,21 @@ export class MoviedbService {
       .get(this.baseUrl + `movie/${type}?` + this.apiKey)
       .toPromise();
   }
+
+  getMoviesFromGenre(genre: string) {
+    const genreId: any = {
+      adventure: 12,
+      action: 28,
+      comedy: 35,
+      horror: 27,
+      romance: 10749,
+      family: 10751,
+    };
+    return this.http
+      .get(
+        this.baseUrl +
+          `discover/movie?${this.apiKey}&with_genres=${genreId[genre]}`
+      )
+      .toPromise();
+  }
 }

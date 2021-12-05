@@ -7,7 +7,18 @@ import { PredictionEvent } from "../prediction-event";
   styleUrls: ["./home-page.component.css"],
 })
 export class HomePageComponent implements OnInit {
-  browseTypes: string[] = ["Popular", "Now Playing", "Top Rated", "Upcoming"];
+  browseTypes: string[] = [
+    "Popular",
+    "Now Playing",
+    "Top Rated",
+    "Upcoming",
+    "Adventure",
+    "Action",
+    "Comedy",
+    "Horror",
+    "Romance",
+    "Family",
+  ];
   index: number = 0;
 
   currentBrowseType: String = this.browseTypes[this.index];
@@ -19,7 +30,7 @@ export class HomePageComponent implements OnInit {
   prediction(event: PredictionEvent) {
     const prediction = event.getPrediction();
     if (prediction === "Hand Pointing") {
-      if (this.index === 4) {
+      if (this.index === this.browseTypes.length) {
         this.index = 0;
         this.currentBrowseType = this.browseTypes[this.index];
       } else {

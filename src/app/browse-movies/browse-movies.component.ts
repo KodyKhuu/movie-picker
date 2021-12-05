@@ -33,13 +33,29 @@ export class BrowseMoviesComponent implements OnInit {
   ngOnInit(): void {
     this.browseType = this.route.snapshot.paramMap.get("type") as string;
 
-    this.moviedbService.getMovies(this.browseType).then((data: any) => {
-      this.movies = data.results;
-      console.log(this.movies);
-      this.currentMovie = this.movies[this.index];
-      this.currentImage =
-        "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
-    });
+    if (
+      ["adventure", "action", "comedy", "horror", "romance", "family"].includes(
+        this.browseType
+      )
+    ) {
+      this.moviedbService
+        .getMoviesFromGenre(this.browseType)
+        .then((data: any) => {
+          this.movies = data.results;
+          console.log(this.movies);
+          this.currentMovie = this.movies[this.index];
+          this.currentImage =
+            "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
+        });
+    } else {
+      this.moviedbService.getMovies(this.browseType).then((data: any) => {
+        this.movies = data.results;
+        console.log(this.movies);
+        this.currentMovie = this.movies[this.index];
+        this.currentImage =
+          "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
+      });
+    }
   }
 
   prediction(event: PredictionEvent) {
