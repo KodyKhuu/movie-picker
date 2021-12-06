@@ -21,6 +21,8 @@ export class BrowseMoviesComponent implements OnInit {
 
   counterNext: number = 0;
   counterAdd: number = 0;
+  counterHome: number = 0;
+  counterFavorites: number = 0;
 
   showError: boolean = false;
   showSuccess: boolean = false;
@@ -70,7 +72,8 @@ export class BrowseMoviesComponent implements OnInit {
           this.index = 0;
           this.currentMovie = this.movies[this.index];
         } else {
-          this.currentMovie = this.movies[this.index++];
+          this.index = this.index + 1;
+          this.currentMovie = this.movies[this.index];
         }
         this.currentImage =
           "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
@@ -84,7 +87,8 @@ export class BrowseMoviesComponent implements OnInit {
           this.index = this.movies.length - 1;
           this.currentMovie = this.movies[this.index];
         } else {
-          this.currentMovie = this.movies[this.index--];
+          this.index = this.index - 1;
+          this.currentMovie = this.movies[this.index];
         }
         this.currentImage =
           "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
@@ -125,9 +129,17 @@ export class BrowseMoviesComponent implements OnInit {
         }
       }
     } else if (prediction == "Two Closed Hands") {
-      window.open("/favorites", "_self");
-    } else if (prediction == "Two Hands Pinching") {
-      window.open("/", "_self");
+      this.counterFavorites++;
+      if (this.counterFavorites === 5) {
+        this.counterFavorites = 0;
+        window.open("/favorites", "_self");
+      }
+    } else if (prediction == "Closed Hand") {
+      this.counterHome++;
+      if (this.counterHome === 10) {
+        this.counterHome = 0;
+        window.open("/", "_self");
+      }
     }
   }
 }

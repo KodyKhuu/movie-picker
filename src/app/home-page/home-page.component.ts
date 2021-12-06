@@ -34,7 +34,8 @@ export class HomePageComponent implements OnInit {
         this.index = 0;
         this.currentBrowseType = this.browseTypes[this.index];
       } else {
-        this.currentBrowseType = this.browseTypes[this.index++];
+        this.index = this.index + 1;
+        this.currentBrowseType = this.browseTypes[this.index];
       }
     } else if (prediction === "Open Hand") {
       const type = this.currentBrowseType.toLowerCase().replace(" ", "_");

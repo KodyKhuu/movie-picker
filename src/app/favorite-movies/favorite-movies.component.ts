@@ -18,6 +18,7 @@ export class FavoriteMoviesComponent implements OnInit {
 
   rankCount: number = 0;
   selectCount: number = 0;
+  homeCount: number = 0;
 
   constructor() {}
 
@@ -42,7 +43,11 @@ export class FavoriteMoviesComponent implements OnInit {
     console.log(prediction);
 
     if (prediction == "One Closed One Pointing") {
-      window.open("/", "_self");
+      this.homeCount++;
+      if (this.homeCount === 5) {
+        this.homeCount = 0;
+        window.open("/", "_self");
+      }
     } else if (prediction === "Open Hand") {
       this.rankCount++;
       if (this.rankCount === 3) {
@@ -51,7 +56,10 @@ export class FavoriteMoviesComponent implements OnInit {
         if (!this.isRanking) {
           this.currentMovie = FavoriteMoviesComponent.movies[this.index];
           this.rankingIndex = this.index;
-          console.log(this.index);
+          window.localStorage.setItem(
+            "favMovies",
+            JSON.stringify(FavoriteMoviesComponent.movies)
+          );
         }
       }
     } else if (prediction == "Hand Pointing") {
@@ -59,14 +67,15 @@ export class FavoriteMoviesComponent implements OnInit {
       if (this.selectCount === 3) {
         this.selectCount = 0;
         if (!this.isRanking) {
-          this.rankingIndex = this.index;
           if (this.index === FavoriteMoviesComponent.movies.length) {
             this.index = 0;
 
             this.currentMovie = FavoriteMoviesComponent.movies[this.index];
           } else {
-            this.currentMovie = FavoriteMoviesComponent.movies[this.index++];
+            this.index = this.index + 1;
+            this.currentMovie = FavoriteMoviesComponent.movies[this.index];
           }
+          this.rankingIndex = this.index;
         } else {
           if (this.rankingIndex === FavoriteMoviesComponent.movies.length - 1) {
             const movie = FavoriteMoviesComponent.movies[0];
@@ -94,19 +103,20 @@ export class FavoriteMoviesComponent implements OnInit {
           }
         }
       }
-    } else if (prediction === "Hand Pinching") {
+    } else if (prediction === "Two Open Hands") {
       this.selectCount++;
       if (this.selectCount === 3) {
         this.selectCount = 0;
         if (!this.isRanking) {
-          this.rankingIndex = this.index;
           if (this.index === 0) {
             this.index = FavoriteMoviesComponent.movies.length - 1;
 
             this.currentMovie = FavoriteMoviesComponent.movies[this.index];
           } else {
-            this.currentMovie = FavoriteMoviesComponent.movies[this.index--];
+            this.index = this.index - 1;
+            this.currentMovie = FavoriteMoviesComponent.movies[this.index];
           }
+          this.rankingIndex = this.index;
         } else {
           if (this.rankingIndex === 0) {
             const movie =
