@@ -11,10 +11,10 @@ import { FavoriteMoviesComponent } from "../favorite-movies/favorite-movies.comp
   providers: [MoviedbService],
 })
 export class BrowseMoviesComponent implements OnInit {
-  movies: any;
+  movies: any = [];
   index: number = 0;
 
-  currentMovie: any;
+  currentMovie: any = { title: "" };
   currentImage: string;
 
   browseType: string;
@@ -44,7 +44,6 @@ export class BrowseMoviesComponent implements OnInit {
         .getMoviesFromGenre(this.browseType)
         .then((data: any) => {
           this.movies = data.results;
-          console.log(this.movies);
           this.currentMovie = this.movies[this.index];
           this.currentImage =
             "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
@@ -52,7 +51,6 @@ export class BrowseMoviesComponent implements OnInit {
     } else {
       this.moviedbService.getMovies(this.browseType).then((data: any) => {
         this.movies = data.results;
-        console.log(this.movies);
         this.currentMovie = this.movies[this.index];
         this.currentImage =
           "http://image.tmdb.org/t/p/w500" + this.currentMovie.poster_path;
@@ -62,7 +60,6 @@ export class BrowseMoviesComponent implements OnInit {
 
   prediction(event: PredictionEvent) {
     const prediction = event.getPrediction();
-    console.log(prediction);
     if (prediction === "Hand Pointing") {
       this.counterNext++;
 

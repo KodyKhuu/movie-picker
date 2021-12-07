@@ -30,8 +30,6 @@ export class FavoriteMoviesComponent implements OnInit {
       FavoriteMoviesComponent.movies = JSON.parse(favMoviesFromStorage);
       this.currentMovie = FavoriteMoviesComponent.movies[this.index];
     }
-
-    console.log(FavoriteMoviesComponent.movies);
   }
 
   get staticMovies() {
@@ -40,7 +38,6 @@ export class FavoriteMoviesComponent implements OnInit {
 
   prediction(event: PredictionEvent) {
     const prediction = event.getPrediction();
-    console.log(prediction);
 
     if (prediction == "One Closed One Pointing") {
       this.homeCount++;
@@ -87,11 +84,6 @@ export class FavoriteMoviesComponent implements OnInit {
             this.rankingIndex = 0;
             // this.currentMovie = FavoriteMoviesComponent.movies[this.rankingIndex];
           } else {
-            console.log(
-              this.rankingIndex,
-              FavoriteMoviesComponent.movies[this.rankingIndex].title,
-              FavoriteMoviesComponent.movies[this.rankingIndex + 1].title
-            );
             const movie = FavoriteMoviesComponent.movies[this.rankingIndex + 1];
 
             FavoriteMoviesComponent.movies[this.rankingIndex + 1] =
@@ -132,11 +124,6 @@ export class FavoriteMoviesComponent implements OnInit {
             this.rankingIndex = FavoriteMoviesComponent.movies.length - 1;
             // this.currentMovie = FavoriteMoviesComponent.movies[this.rankingIndex];
           } else {
-            console.log(
-              this.rankingIndex,
-              FavoriteMoviesComponent.movies[this.rankingIndex].title,
-              FavoriteMoviesComponent.movies[this.rankingIndex - 1].title
-            );
             const movie = FavoriteMoviesComponent.movies[this.rankingIndex - 1];
 
             FavoriteMoviesComponent.movies[this.rankingIndex - 1] =
